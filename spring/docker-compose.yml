@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: lontsi/postgres-food:latest  # Votre image PostgreSQL personnalisée
+    container_name: postgres_food
+    environment:
+      POSTGRES_DB: food1_management_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "54322:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - food_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  app:
+    image: lontsi/foot:latest  # Votre image Spring Boot
+    container_name: food_app
+    ports:
+      - "8082:8082"  # L'application tourne sur 8082 dans le conteneur
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/food1_management_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - food_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  food_network:
+    driver: bridge

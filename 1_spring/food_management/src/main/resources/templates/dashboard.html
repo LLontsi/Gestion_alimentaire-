@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titre}">Dashboard - Gestion Alimentaire</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-utensils me-2"></i>
+                Gestion Alimentaire
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-home me-1"></i>Accueil
+                </a>
+                <a class="nav-link active" href="/dashboard">
+                    <i class="fas fa-chart-line me-1"></i>Dashboard
+                </a>
+                <a class="nav-link" href="/logout">
+                    <i class="fas fa-sign-out-alt me-1"></i>Déconnexion
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">
+                    <i class="fas fa-chart-line text-primary me-2"></i>
+                    <span th:text="${titre}">Tableau de Bord</span>
+                </h1>
+            </div>
+        </div>
+
+        <!-- Statistiques -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="card-title">0</h4>
+                                <p class="card-text">Personnes</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-users fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="card-title">0</h4>
+                                <p class="card-text">Aliments</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-hamburger fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card text-white bg-warning">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="card-title">0</h4>
+                                <p class="card-text">Ingrédients</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-carrot fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="card-title">0</h4>
+                                <p class="card-text">Images</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-images fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-bolt me-2"></i>Actions Rapides
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <a href="/personnes/new" class="btn btn-primary w-100">
+                                    <i class="fas fa-user-plus me-2"></i>Nouvelle Personne
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/foods/new" class="btn btn-success w-100">
+                                    <i class="fas fa-plus me-2"></i>Nouvel Aliment
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/ingredients/new" class="btn btn-warning w-100">
+                                    <i class="fas fa-plus me-2"></i>Nouvel Ingrédient
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/images/upload" class="btn btn-info w-100">
+                                    <i class="fas fa-upload me-2"></i>Upload Image
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activité récente -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-clock me-2"></i>Activité Récente
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center text-muted py-5">
+                            <i class="fas fa-inbox fa-3x mb-3"></i>
+                            <p>Aucune activité récente pour le moment.</p>
+                            <p><small>Les actions seront affichées ici une fois que vous commencerez à utiliser le système.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

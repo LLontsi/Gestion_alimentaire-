@@ -1,0 +1,13 @@
+# Dockerfile.postgres
+FROM postgres:15
+
+# Copier le script SQL d'initialisation
+COPY food_management_db.sql /docker-entrypoint-initdb.d/
+
+# Variables d'environnement par défaut (peuvent être surchargées)
+ENV POSTGRES_DB=food_management_db
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=password
+
+# Exposer le port PostgreSQL
+EXPOSE 5432
